@@ -1,45 +1,35 @@
 import {CREATE_CHAT, DELETE_CHAT, EDIT_CHAT, SET_CHATS} from "./action";
 
 const initialValue = {
-    chats: [],
+    chats: {},
 }
 
 export const chatReducer = (state= initialValue, action) => {
     switch(action.type){
         case CREATE_CHAT: {
             return {
-                chats: [
+                chats: {
                     ...state.chats,
-                    action.payload,
-                ]
+                    [action.payload.id]: action.payload,
+                }
+                
             }
         }
         case DELETE_CHAT: {
-            const newChats =  state.chats.filter((item)=> item.id !== action.payload);
-            return {
-                chats: newChats,
-            }
-        }
-        case EDIT_CHAT: {
-            const targetIndex = state.chats.findIndex((item) => item.id === action.payload.id);
-           
-            if (targetIndex===-1) {
-                return state;
-            } 
-           
-            const newChats = [...state.chats];
-            newChats[targetIndex] = {
-                ...newChats[targetIndex],
-                ...action.payload,
-            }
+           if(!action.payload){
+               return state;
+           }
 
-            return {
-                chats: newChats,
-            }
+           const chats = {...state.chats};
+           delete chats[action.payload];
+           return {
+               chats
+           }
+            
         }
         case SET_CHATS: {
             return {
-                chats: [...action.payload],
+                chats: {...action.payload},
             }
         }
         default: {

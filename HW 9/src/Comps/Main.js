@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 
 
@@ -27,17 +27,16 @@ const linkes = [
         to: "/login",
         title: "Login"
     },
-    {
-        to: "/",
-        title: "Log out"
-    },
 
 ]
 
 
 
 export const Main = () => {
-   
+    
+
+    
+
     return(
         <div >
             <h1>Main page</h1>
@@ -48,6 +47,7 @@ export const Main = () => {
                 <br/>
                    </div>
             ))}
+           
             
         </div>
     )

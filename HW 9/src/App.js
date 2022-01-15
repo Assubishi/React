@@ -34,28 +34,29 @@ function App() {
       <h1>Homework</h1>
       
      <Switch>
-       <Provider store = {store}>
+      
          <PersistGate loading = {null} persistor={persistor}>
-         <PrivateRoute auth={isAuth} path = "/profile">
+          <Route auth={isAuth} path = "/profile">
                <Profile />
-            </PrivateRoute>
+            </Route>
             <PrivateRoute auth={isAuth} path = "/chats">
               <Chats />            
             </PrivateRoute>
-            <PublicRoute auth={isAuth} path = "/posts">
+
+            <Route auth={isAuth} path = "/posts">
                <Posts />
-            </PublicRoute>
+            </Route>
             <PublicRoute auth={isAuth} path = "/signup">
                <SignUp />
             </PublicRoute>
             <PublicRoute auth={isAuth} exact path="/login">
               <Login />
             </PublicRoute> 
-              <PublicRoute  exact path = "/">
+              <Route  exact path = "/">
                 <Main />
-              </PublicRoute>
+              </Route>
             </PersistGate>
-        </Provider>
+       
       </Switch>
       
     </BrowserRouter>

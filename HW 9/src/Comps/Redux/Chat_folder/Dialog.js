@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import { makeStyles } from "@material-ui/styles";
 
 
-import { withMessages} from "../hocs/withMessages";
+import { withChatMessages} from "../hocs/withMessages";
 
 
 const useStyles = makeStyles (() => ({
@@ -24,11 +24,6 @@ const useStyles = makeStyles (() => ({
 
 export const DialogRender = ({messageList, hasChat, onSendMessage}) => {
     const classes = useStyles();
-   
-    
-    
-
-  
     
     if (!hasChat){
         return <Redirect to="/chats/" />;
@@ -43,4 +38,4 @@ export const DialogRender = ({messageList, hasChat, onSendMessage}) => {
     );
   };
 
-  export const Dialog = withMessages(DialogRender);
+  export const Dialog = withChatMessages(DialogRender);

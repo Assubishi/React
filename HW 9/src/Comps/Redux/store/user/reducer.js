@@ -13,10 +13,13 @@ export const logoutUserAction = () => ({
 
 export const inAuthAction = (dispatch) => {
         auth.onAuthStateChanged((user)=> {
+            
             if(user){
-                dispatch(loginUserAction(user))
+                dispatch(loginUserAction(user));
+               
             } else {
                 dispatch(logoutUserAction());
+               
             }
         });
 }
@@ -26,7 +29,7 @@ const initialState = {
 }
 
 export const getIsAuth = (state) => state.user.user !== null;
-
+export const getUserId = (state) => state.user.user.id;
 
 
 export const userReducer = (state = initialState, action) =>{
